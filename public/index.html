@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+          <v-layout row wrap>
+            <v-flex xs4>
+              <v-card>
+                <v-toolbar color="blue accent-4" dark>
+                  <v-toolbar-title>Object Storage Settings</v-toolbar-title>
+                </v-toolbar>
+                <v-flex xs12 sm6>
+                  <v-text-field label="Bucket Name" v-model="objectStrageSettings.mybucket"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <v-text-field label="Number" v-model="objectStrageSettings.num"></v-text-field>
+                </v-flex>
+                <v-text-field label="File Name" v-model="objectStrageSettings.myfile"></v-text-field>
+                <v-text-field label="File Content" v-model="objectStrageSettings.filecontent"></v-text-field>
+                <v-btn @click="setSettings">SET</v-btn>
+              </v-card>
+            </v-flex>
+            <v-flex xs8>
+              <v-card class="matches-card">
+  <v-card-title>Object List<span v-if="currentObjectListBucket != ''"> of {{currentObjectListBucket}}</span><v-spacer></v-spacer>
+    <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
+  </v-card-title>
+  <v-data-table :headers="headers" :items="objectList" :search="search">
+    <template slot="items" slot-scope="props">
+      <td class="text-xs-left">{{ props.item.Key }}</td>
+    </template>
+    <v-alert slot="no-results" :value="true" color="error" dark icon="warning">
+      Your search for "{{ search }}" found no results.
+    </v-alert>
+  </v-data-table>
+</v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+<script src="js/control.js"></script>
+
+</html>

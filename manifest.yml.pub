@@ -1,0 +1,6 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  name: cos-nodejs-sample5
+  disk_quota: 1024M
