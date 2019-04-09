@@ -1,1 +1,5 @@
 node_modules/
+ibm-app-cluster-critical.yaml
+package-lock.json
+vcap_services.json
+asg_cos_private.json
