@@ -19,15 +19,15 @@ var bodyParser = require('body-parser');
 
 // get the app environment from Cloud Foundry
 const appEnv = cfenv.getAppEnv();
-const cosService = 'cloud-object-storage';
-//const cosService = 'user-provided';
+//const cosService = 'cloud-object-storage';
+const cosService = 'user-provided';
 
 // get the app environment from Cloud Foundry
 var cosCreds = appEnv.services[cosService][0].credentials;
 
 var config = {
-    endpoint: 's3.us-south.cloud-object-storage.appdomain.cloud',
-//    endpoint: 's3.private.us-south.cloud-object-storage.appdomain.cloud',
+//    endpoint: 's3.us-south.cloud-object-storage.appdomain.cloud',
+    endpoint: 's3.private.us-south.cloud-object-storage.appdomain.cloud',
     apiKeyId: cosCreds.apikey,
     ibmAuthEndpoint: 'https://iam.ng.bluemix.net/oidc/token',
     serviceInstanceId: cosCreds.resource_instance_id
@@ -38,9 +38,9 @@ console.log(`apikeyid: ${cosCreds.apikey} serviceInstanceId: ${cosCreds.resource
 var cos = new AWS.S3(config);
 
 //------------------------------------------------------------------------------
-var mybucket = 'cos-cfee';
+var mybucket = 'cos-ded';
 var num = 1;
-var myfile = 'cfee_user_test' + num;
+var myfile = 'ded_user_test' + num;
 var filecontent = 'this is a ' + myfile;
 //------------------------------------------------------------------------------
 
